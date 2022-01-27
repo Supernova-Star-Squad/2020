@@ -8,36 +8,30 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-import frc.robot.Atlas;
 
-public class ElevatorSubsystem extends SubsystemBase 
-{
+public class SpinnerSubsystem extends SubsystemBase {
   /**
-   * Creates a new ElevatorSubsystem.
+   * Creates a new SpinnerSubsystem.
    */
-
-  public ElevatorSubsystem()
-  {
+  public SpinnerSubsystem() {
 
   }
-    public WPI_VictorSPX elevatorController = new WPI_VictorSPX(Atlas.elevatorMotor);
-  
-    public void up()
-    {
-      elevatorController.set(1);
-    }
-    public void down()
-    {
-      elevatorController.set(-1);
-    }
-  
-  
+  public WPI_VictorSPX spinnerController = new WPI_VictorSPX(RobotMap.spinnerMotor);
+
+  public void left(){
+    spinnerController.set(-1*RobotMap.spinnerThrottle);
+  }
+  public void right(){
+    spinnerController.set(1*RobotMap.spinnerThrottle);
+  }
+  public void stop(){
+    spinnerController.set(0);
+  }
 
   @Override
-  public void periodic() 
-  {
+  public void periodic() {
     // This method will be called once per scheduler run
   }
-
 }

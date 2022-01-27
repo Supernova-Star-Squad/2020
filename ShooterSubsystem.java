@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class ShooterSubsystem extends SubsystemBase {
   /**
@@ -15,6 +17,20 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   public ShooterSubsystem() {
 
+  }
+
+  public WPI_VictorSPX shooterController = new WPI_VictorSPX(RobotMap.shooterMotor);
+
+  public void fire(){
+     shooterController.set(RobotMap.shooterThrottle);    
+  }
+
+  public void unfire(){
+    shooterController.set(-RobotMap.shooterThrottle);
+  }
+  
+  public void stop(){
+    shooterController.set(0);
   }
 
   @Override
